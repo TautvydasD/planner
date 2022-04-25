@@ -1,0 +1,96 @@
+Date : 2022-04-23 01:28:32
+Directory : /home/tautvydas/MyProjects/Bakis
+Total : 54 files,  2480 codes, 55 comments, 87 blanks, all 2622 lines
+
+Languages
++------------+------------+------------+------------+------------+------------+
+| language   | files      | code       | comment    | blank      | total      |
++------------+------------+------------+------------+------------+------------+
+| Vue        |         18 |      1,185 |        -91 |          3 |      1,097 |
+| JavaScript |         29 |        759 |        146 |         84 |        989 |
+| JSON       |          4 |        533 |          0 |          0 |        533 |
+| SVG        |          3 |          3 |          0 |          0 |          3 |
++------------+------------+------------+------------+------------+------------+
+
+Directories
++--------------------------------------------------------------------------------+------------+------------+------------+------------+------------+
+| path                                                                           | files      | code       | comment    | blank      | total      |
++--------------------------------------------------------------------------------+------------+------------+------------+------------+------------+
+| .                                                                              |         54 |      2,480 |         55 |         87 |      2,622 |
+| client                                                                         |         26 |      1,446 |        -90 |         12 |      1,368 |
+| client/src                                                                     |         24 |      1,233 |        -90 |         12 |      1,155 |
+| client/src/assets                                                              |          3 |          3 |          0 |          0 |          3 |
+| client/src/components                                                          |         11 |        737 |       -160 |          3 |        580 |
+| client/src/components/Calendar                                                 |          1 |          1 |          0 |          0 |          1 |
+| client/src/components/Create                                                   |          1 |         26 |        -36 |          0 |        -10 |
+| client/src/router                                                              |          1 |         -5 |          0 |          0 |         -5 |
+| client/src/services                                                            |          1 |         45 |          1 |          9 |         55 |
+| client/src/store                                                               |          1 |          5 |          0 |          0 |          5 |
+| client/src/views                                                               |          6 |        416 |         69 |          0 |        485 |
+| server                                                                         |         28 |      1,034 |        145 |         75 |      1,254 |
+| server/src                                                                     |         26 |        714 |        145 |         75 |        934 |
+| server/src/controllers                                                         |         10 |        398 |        132 |         43 |        573 |
+| server/src/models                                                              |          6 |        103 |          0 |          6 |        109 |
+| server/src/routes                                                              |          6 |         73 |          0 |         18 |         91 |
++--------------------------------------------------------------------------------+------------+------------+------------+------------+------------+
+
+Files
++--------------------------------------------------------------------------------+------------+------------+------------+------------+------------+
+| filename                                                                       | language   | code       | comment    | blank      | total      |
++--------------------------------------------------------------------------------+------------+------------+------------+------------+------------+
+| /home/tautvydas/MyProjects/Bakis/client/package-lock.json                      | JSON       |        212 |          0 |          0 |        212 |
+| /home/tautvydas/MyProjects/Bakis/client/package.json                           | JSON       |          1 |          0 |          0 |          1 |
+| /home/tautvydas/MyProjects/Bakis/client/src/App.vue                            | Vue        |         32 |          0 |          0 |         32 |
+| /home/tautvydas/MyProjects/Bakis/client/src/assets/basketball.svg              | SVG        |          1 |          0 |          0 |          1 |
+| /home/tautvydas/MyProjects/Bakis/client/src/assets/dumbbell.svg                | SVG        |          1 |          0 |          0 |          1 |
+| /home/tautvydas/MyProjects/Bakis/client/src/assets/weight-lifter.svg           | SVG        |          1 |          0 |          0 |          1 |
+| /home/tautvydas/MyProjects/Bakis/client/src/components/Calendar/EventForm.vue  | Vue        |          1 |          0 |          0 |          1 |
+| /home/tautvydas/MyProjects/Bakis/client/src/components/CardModal.vue           | Vue        |         23 |          0 |          1 |         24 |
+| /home/tautvydas/MyProjects/Bakis/client/src/components/CardTable.vue           | Vue        |        167 |          4 |          2 |        173 |
+| /home/tautvydas/MyProjects/Bakis/client/src/components/Create/WorkoutModal.vue | Vue        |         26 |        -36 |          0 |        -10 |
+| /home/tautvydas/MyProjects/Bakis/client/src/components/FoodLogData.vue         | Vue        |         19 |          0 |          0 |         19 |
+| /home/tautvydas/MyProjects/Bakis/client/src/components/HelloWorld.vue          | Vue        |        -61 |        -88 |         -3 |       -152 |
+| /home/tautvydas/MyProjects/Bakis/client/src/components/Navigation.vue          | Vue        |        -64 |        -40 |          0 |       -104 |
+| /home/tautvydas/MyProjects/Bakis/client/src/components/ProfileSettings.vue     | Vue        |        156 |          0 |          1 |        157 |
+| /home/tautvydas/MyProjects/Bakis/client/src/components/WaterLogData.vue        | Vue        |          8 |          0 |          0 |          8 |
+| /home/tautvydas/MyProjects/Bakis/client/src/components/WeightLogData.vue       | Vue        |          8 |          0 |          0 |          8 |
+| /home/tautvydas/MyProjects/Bakis/client/src/components/WorkoutModal.vue        | Vue        |        454 |          0 |          2 |        456 |
+| /home/tautvydas/MyProjects/Bakis/client/src/router/index.js                    | JavaScript |         -5 |          0 |          0 |         -5 |
+| /home/tautvydas/MyProjects/Bakis/client/src/services/user.js                   | JavaScript |         45 |          1 |          9 |         55 |
+| /home/tautvydas/MyProjects/Bakis/client/src/store/index.js                     | JavaScript |          5 |          0 |          0 |          5 |
+| /home/tautvydas/MyProjects/Bakis/client/src/views/Exercises.vue                | Vue        |        -46 |          0 |         -3 |        -49 |
+| /home/tautvydas/MyProjects/Bakis/client/src/views/Logger.vue                   | Vue        |          1 |          0 |          0 |          1 |
+| /home/tautvydas/MyProjects/Bakis/client/src/views/Profile.vue                  | Vue        |         -5 |          0 |         -1 |         -6 |
+| /home/tautvydas/MyProjects/Bakis/client/src/views/Statistics.vue               | Vue        |        169 |         91 |          0 |        260 |
+| /home/tautvydas/MyProjects/Bakis/client/src/views/Supervisors.vue              | Vue        |        225 |         13 |          4 |        242 |
+| /home/tautvydas/MyProjects/Bakis/client/src/views/Workouts.vue                 | Vue        |         72 |        -35 |          0 |         37 |
+| /home/tautvydas/MyProjects/Bakis/server/package-lock.json                      | JSON       |        318 |          0 |          0 |        318 |
+| /home/tautvydas/MyProjects/Bakis/server/package.json                           | JSON       |          2 |          0 |          0 |          2 |
+| /home/tautvydas/MyProjects/Bakis/server/src/app.js                             | JavaScript |          8 |          0 |          0 |          8 |
+| /home/tautvydas/MyProjects/Bakis/server/src/controllers/api.js                 | JavaScript |         21 |          0 |          1 |         22 |
+| /home/tautvydas/MyProjects/Bakis/server/src/controllers/clients.js             | JavaScript |         43 |          0 |          2 |         45 |
+| /home/tautvydas/MyProjects/Bakis/server/src/controllers/coaches.js             | JavaScript |          0 |          0 |          1 |          1 |
+| /home/tautvydas/MyProjects/Bakis/server/src/controllers/communication.js       | JavaScript |         27 |          0 |          6 |         33 |
+| /home/tautvydas/MyProjects/Bakis/server/src/controllers/exercises.js           | JavaScript |          0 |          1 |          0 |          1 |
+| /home/tautvydas/MyProjects/Bakis/server/src/controllers/helper.js              | JavaScript |          3 |          0 |          0 |          3 |
+| /home/tautvydas/MyProjects/Bakis/server/src/controllers/messages.js            | JavaScript |         27 |         76 |          9 |        112 |
+| /home/tautvydas/MyProjects/Bakis/server/src/controllers/rooms.js               | JavaScript |         89 |         43 |         10 |        142 |
+| /home/tautvydas/MyProjects/Bakis/server/src/controllers/statistics.js          | JavaScript |         23 |          1 |          2 |         26 |
+| /home/tautvydas/MyProjects/Bakis/server/src/controllers/workouts.js            | JavaScript |        165 |         11 |         12 |        188 |
+| /home/tautvydas/MyProjects/Bakis/server/src/db.js                              | JavaScript |        112 |          4 |          4 |        120 |
+| /home/tautvydas/MyProjects/Bakis/server/src/models/clients.js                  | JavaScript |         36 |          0 |          0 |         36 |
+| /home/tautvydas/MyProjects/Bakis/server/src/models/index.js                    | JavaScript |          6 |          0 |          0 |          6 |
+| /home/tautvydas/MyProjects/Bakis/server/src/models/messages.js                 | JavaScript |         13 |          0 |          2 |         15 |
+| /home/tautvydas/MyProjects/Bakis/server/src/models/rooms.js                    | JavaScript |          9 |          0 |          2 |         11 |
+| /home/tautvydas/MyProjects/Bakis/server/src/models/workoutExercise.js          | JavaScript |         26 |          0 |          2 |         28 |
+| /home/tautvydas/MyProjects/Bakis/server/src/models/workouts.js                 | JavaScript |         13 |          0 |          0 |         13 |
+| /home/tautvydas/MyProjects/Bakis/server/src/routes.js                          | JavaScript |          8 |          0 |          0 |          8 |
+| /home/tautvydas/MyProjects/Bakis/server/src/routes/api.js                      | JavaScript |          6 |          0 |          0 |          6 |
+| /home/tautvydas/MyProjects/Bakis/server/src/routes/clients.js                  | JavaScript |          7 |          0 |          0 |          7 |
+| /home/tautvydas/MyProjects/Bakis/server/src/routes/coaches.js                  | JavaScript |         22 |          0 |          4 |         26 |
+| /home/tautvydas/MyProjects/Bakis/server/src/routes/messages.js                 | JavaScript |          8 |          0 |          4 |         12 |
+| /home/tautvydas/MyProjects/Bakis/server/src/routes/rooms.js                    | JavaScript |         15 |          0 |          5 |         20 |
+| /home/tautvydas/MyProjects/Bakis/server/src/routes/workouts.js                 | JavaScript |         15 |          0 |          5 |         20 |
+| /home/tautvydas/MyProjects/Bakis/server/src/server.js                          | JavaScript |         12 |          9 |          4 |         25 |
+| Total                                                                          |            |      2,480 |         55 |         87 |      2,622 |
++--------------------------------------------------------------------------------+------------+------------+------------+------------+------------+

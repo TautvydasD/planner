@@ -2,10 +2,6 @@ import bcrypt from 'bcrypt';
 import jwt from 'jsonwebtoken';
 import { db } from '../db.js';
 
-function getDefaultResponse(req, res) {
-  res.status(200).send({ message: 'Hello World!' });
-}
-
 async function createUser(req, res) {
   const { email, password } = req.body;
   if (!(email && password)) {
@@ -87,7 +83,6 @@ async function editUser(req, res) {
 }
 
 export {
-  getDefaultResponse,
   createUser,
   editUser,
 };

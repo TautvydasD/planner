@@ -1,8 +1,11 @@
-function formatDate(dateString, otherFormat) {
-  if (otherFormat) {
-    return `${new Date(dateString).toLocaleDateString()}T${new Date(dateString).toLocaleTimeString()}`;
+function formatDate(dateString, toIsoString = false) {
+  const date = new Date(dateString).toISOString();
+
+  if (toIsoString) {
+    return date;
   }
-  return `${new Date(dateString).toLocaleDateString()} ${new Date(dateString).toLocaleTimeString()}`;
+
+  return date.replace(/T/, ' ').replace(/\..+/, '');
 }
 
 export {

@@ -3,7 +3,14 @@
     width="600"
   >
     <template #activator="{ on, attrs }">
+      <slot
+        v-if="custom"
+        name="custom"
+        :attrs="attrs"
+        :on="on"
+      />
       <v-card
+        v-else
         v-bind="attrs"
         v-on="on"
         class="ma-2"
@@ -73,6 +80,10 @@ export default {
   props: {
     exercise: {
       type: Object,
+    },
+    custom: {
+      type: Boolean,
+      default: false,
     },
   },
   methods: {

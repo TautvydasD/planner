@@ -1,74 +1,88 @@
 <template>
   <v-container class="justify-center">
-    <v-container class="col-lg-8">
-      <v-layout>
-        <v-flex>
-          <workout-modal
-            :exercises="exercises"
-            is-add
-            @save-workout="saveWorkout"
-          />
-        </v-flex>
-      </v-layout>
-      <v-divider
-        style="margin-top: 12px;"
-      />
-      <h1 class="subheading grey--text my-3">
-        My workouts
-      </h1>
-      <v-divider
-        style="margin-bottom: 12px;"
-      />
-      <v-layout wrap>
-        <card-table
-          :instances="myWorkouts"
-          :loaded="loaded"
+    <slide-table
+      :instances="myWorkouts"
+      title="My workouts"
+      :loaded="loaded"
+      has-add
+    >
+      <template #header>
+        <card-modal
+          v-if="loaded && myWorkouts.length > 5"
+          title=" "
         >
-          <template #default="{ item }">
-            <workout-modal
-              :exercises="exercises"
-              :workout="item"
-              is-edit
-              @save-workout="editWorkout"
-              @remove-workout="removeWorkout"
-            />
+          <template #content="{ on, attrs }">
+            <div class="d-flex align-center">
+              <v-btn
+                v-bind="attrs"
+                v-on="on"
+                text
+              >
+                Show all
+              </v-btn>
+            </div>
           </template>
-        </card-table>
-      </v-layout>
-      <v-divider
-        style="margin-top: 12px;"
-      />
-      <h1 class="subheading grey--text my-3">
-        Workouts
-      </h1>
-      <v-divider
-        style="margin-bottom: 12px;"
-      />
-      <v-layout wrap>
-        <card-table
-          :instances="workouts"
-          :loaded="loaded"
-        >
-          <template #default="{ item }">
-            <workout-modal
-              :exercises="exercises"
-              :workout="item"
-            />
-          </template>
-        </card-table>
-      </v-layout>
-    </v-container>
+          <card-table
+            :instances="myWorkouts"
+            :loaded="loaded"
+            title="My workouts"
+          >
+            <template #default="{ item }">
+              <workout-modal
+                :exercises="exercises"
+                :workout="item"
+                is-edit
+                @save-workout="editWorkout"
+                @remove-workout="removeWorkout"
+              />
+            </template>
+          </card-table>
+        </card-modal>
+      </template>
+      <template #create>
+        <workout-modal
+          :exercises="exercises"
+          is-add
+          @save-workout="saveWorkout"
+        />
+      </template>
+      <template #default="{ item }">
+        <workout-modal
+          :exercises="exercises"
+          :workout="item"
+          is-edit
+          @save-workout="editWorkout"
+          @remove-workout="removeWorkout"
+        />
+      </template>
+    </slide-table>
+    <card-table
+      :instances="workouts"
+      :loaded="loaded"
+      title="Workouts"
+    >
+      <template #default="{ item }">
+        <workout-modal
+          :exercises="exercises"
+          :workout="item"
+        />
+      </template>
+    </card-table>
   </v-container>
 </template>
 <script>
 import user from '../services/user';
 import CardTable from '../components/CardTable.vue';
 import WorkoutModal from '../components/WorkoutModal.vue';
+import SlideTable from '../components/SlideTable.vue';
+import CardModal from '../components/CardModal.vue';
 
 export default {
   components: {
     WorkoutModal,
     CardTable,
+    SlideTable,
+    CardModal,
   },
   data() {
     return {

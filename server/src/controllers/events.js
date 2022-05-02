@@ -39,6 +39,7 @@ async function createEvent(req, res) {
       description: req.body.description,
       startTime: req.body.startTime,
       endTime: req.body.endTime,
+      workoutId: req.body.workoutId,
     };
     const event = await db.event.create(params);
     res.status(200).send({
@@ -51,6 +52,7 @@ async function createEvent(req, res) {
         startTime: formatDate(event.startTime),
         endTime: formatDate(event.endTime),
         createdAt: formatDate(event.createdAt),
+        workoutId: event.workoutId,
       },
     });
   } catch (error) {
@@ -87,6 +89,7 @@ async function editEvents(req, res) {
         startTime: formatDate(updatedEvent.startTime),
         endTime: formatDate(updatedEvent.endTime),
         createdAt: formatDate(updatedEvent.createdAt),
+        workoutId: updatedEvent.workoutId,
       },
     });
   } catch (error) {

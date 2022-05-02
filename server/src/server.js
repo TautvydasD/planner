@@ -8,9 +8,9 @@ import { formatDate } from './controllers/helper.js';
 
 // await getWgerExercises();
 await db.authenticateDatabase();
-await db.sequelize.sync({ force: true });
+// await db.sequelize.sync({ force: true });
 await db.createData();
-// await db.sequelize.sync();
+await db.sequelize.sync();
 const server = http.createServer(app);
 const io = new Server(server, {
   // cors: {

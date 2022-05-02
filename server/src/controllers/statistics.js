@@ -86,10 +86,16 @@ async function getStatistics(req, res) {
     const data = {};
 
     if (req.fitbit) {
-      const sleepRes = await axios.get('https://api.fitbit.com/1.2/user/-/sleep/list.json?beforeDate=2022-03-25&sort=desc&offset=0&limit=100', { headers: req.headers });
-      const devicesRes = await axios.get('https://api.fitbit.com/1/user/-/devices.json', { headers: req.headers });
+      const sleepRes = await axios.get('https://api.fitbit.com/1.2/user/-/sleep/list.json?beforeDate=2022-03-25&sort=desc&offset=0&limit=100', {
+        headers: { Authorization: req.headers.authorization },
+      });
+      const devicesRes = await axios.get('https://api.fitbit.com/1/user/-/devices.json', {
+        headers: { Authorization: req.headers.authorization },
+      });
       // const activitiesRes = await axios.get('https://api.fitbit.com/1/user/-/activities.json', { headers: req.headers });
-      const friendsRes = await axios.get('https://api.fitbit.com/1.1/user/-/friends.json', { headers: req.headers });
+      const friendsRes = await axios.get('https://api.fitbit.com/1.1/user/-/friends.json', {
+        headers: { Authorization: req.headers.authorization },
+      });
       data.sleep = sleepRes.data.sleep;
       data.devices = devicesRes.data;
       // data.activities = activitiesRes.data;
@@ -98,8 +104,9 @@ async function getStatistics(req, res) {
 
     data.events = await getTableStatics(req.user, 'event');
     data.exercises = await getTableStatics(req.user, 'exercise');
-    data.waterLog = await getTableStatics(req.user, 'waterLog');
-    data.weightLog = await getTableStatics(req.user, 'weightLog');
+    data.waterLogs = await getTableStatics(req.user, 'waterLog');
+    data.weightLogs = await getTableStatics(req.user, 'weightLog');
+    data.workouts = await getTableStatics(req.user, 'workout');
     data.bmi = await getBmiData(req.user);
 
     return res.status(200).send(data);
@@ -110,5 +117,54 @@ async function getStatistics(req, res) {
     });
   }
 }
+// {
+//   "access_token":"eyJh
+// bGciOiJIUzI1NiJ9.eyJhdWQiOiIy
+// MzhHOVoiLCJzdWIiOiI3VDc4N1kiLCJpc3MiOiJGaXRiaXQiLCJ
+// 0eXAiOiJhY2Nlc3NfdG9rZW4iLCJzY29wZXMiOiJ3aHIgd251d
+// CB3cHJvIHdzbGUgd3dlaSB3c29jIHdhY3Qgd3NldCB3bG9jI
+// wiZXhwIjoxNjUxNDY3MTY1LCJpYXQiOjE2NTE0MzgzNjV9.N
+// sMNDsrstavc8op9v7rTOERrYzdKabzNWvx5bQJsHaw",
+//   "expires_in":28800,
+//   "refresh_token":"3256734c1452eca9d1284edd1e340c63dfb1939fc9c20149724ec367fae6dbbf",
+//   "scope":"activity settings location nutrition social profile sleep weight heartrate",
+//   "token_type":"Bearer",
+//   "user_id":"7T787Y"
+// }
 
-export { getStatistics };
+// curl -i -X POST \
+// https://api.fitbit.com/oauth2/token \
+//  -H "Authorization: Basic MjM4RzlaOmM3NGEwYjVlYjIxZTk2NTU1MmIxYTNjNDExZDljNjBj"  \
+//  -H "Content-Type: application/x-www-form-urlencoded"  \
+//  --data "grant_type=refresh_token"  \
+//  --data "refresh_token=db6b36929d9ba9a1801e643788371676ae079539f0c87c77bbf5a8aea7963c4c"
+async function getHeart(req, res) {
+  try {
+    const body = new URLSearchParams({
+      grant_type: 'refresh_token',
+      refresh_token: 'df7720fe29c469c7e2b55b003cde2b57d55173fc4cb3eb1bdc88d4409b66c886',
+    });
+    const { data } = await axios.post('https://api.fitbit.com/oauth2/token', body, {
+      headers: {
+        'Content-Type': 'application/x-www-form-urlencoded',
+        Authorization: 'Basic MjM4RzlaOmM3NGEwYjVlYjIxZTk2NTU1MmIxYTNjNDExZDljNjBj',
+      },
+    });
+    const dateRes = await axios.get(`https://api.fitbit.com/1/user/-/activities/heart/date/${req.params.date}/1d.json`, {
+      headers: {
+        Authorization: `Bearer ${data.access_token}`,
+      },
+    });
+    const filterVals = dateRes.data['activities-heart-intraday'].dataset.filter((f) => f.time >= req.params.start && f.time <= req.params.end);
+    res.status(200).send({
+      heartRates: filterVals,
+    });
+  } catch (error) {
+    console.log(error);
+    res.status(400).send({
+      error: error.message,
+    });
+  }
+}
+
+export { getStatistics, getHeart };

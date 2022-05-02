@@ -6,8 +6,14 @@
     @click:outside="resetForm"
   >
     <template #activator="{ on, attrs }">
+      <slot
+        v-if="custom"
+        name="custom"
+        :attrs="attrs"
+        :on="on"
+      />
       <v-card
-        v-if="workout"
+        v-else-if="workout"
         class="ma-2"
       >
         <v-img
@@ -187,38 +193,38 @@
       </v-card-title>
       <v-divider></v-divider>
       <div v-for="(value, key) in exercise" :key="key">
-        <div v-if="key === 'createdAt'">
-          <v-card-subtitle>
-            <h2>Created at</h2>
+        <template v-if="key === 'createdAt'">
+          <v-card-subtitle style="color: rgba(0, 0, 0, 0.6)">
+            Created at
           </v-card-subtitle>
           <v-card-text>
             {{ parseTime(value) }}
           </v-card-text>
-        </div>
-        <div v-else-if="key === 'access_public'">
-          <v-card-subtitle>
-            <h2>Visible to public</h2>
+        </template>
+        <template v-else-if="key === 'access_public'">
+          <v-card-subtitle style="color: rgba(0, 0, 0, 0.6)">
+            Visible to public
           </v-card-subtitle>
-          <v-card-text>
+          <v-card-text style="color: black;">
             {{ value === 'true' ? 'Yes' : 'No' }}
           </v-card-text>
-        </div>
-        <div v-else-if="key === 'client'">
-          <v-card-subtitle>
-            <h2>License author</h2>
+        </template>
+        <template v-else-if="key === 'client'">
+          <v-card-subtitle style="color: rgba(0, 0, 0, 0.6)">
+            License author
           </v-card-subtitle>
-          <v-card-text>
+          <v-card-text style="color: black;">
             {{ value.username }}
           </v-card-text>
-        </div>
-        <div v-else-if="!ignorableFields.includes(key)">
-          <v-card-subtitle>
-            <h2>{{ parseTitle(key) }}</h2>
+        </template>
+        <template v-else-if="!ignorableFields.includes(key)">
+          <v-card-subtitle style="color: rgba(0, 0, 0, 0.6)">
+            {{ parseTitle(key) }}
           </v-card-subtitle>
-          <v-card-text>
+          <v-card-text style="color: black;">
             {{ parseSubtitle(value) }}
           </v-card-text>
-        </div>
+        </template>
       </div>
       <v-divider></v-divider>
       <v-card-actions>
@@ -242,6 +248,10 @@ export default {
       default: () => {},
     },
     workout: {
+      type: Boolean,
+      default: false,
+    },
+    custom: {
       type: Boolean,
       default: false,
     },
@@ -289,7 +299,7 @@ export default {
     },
     parseSubtitle(val) {
       if (val?.length > 0) return val;
-      return '-';
+      return 'None';
     },
     parseTime(val) {
       return val.split('T')[0] || '-';

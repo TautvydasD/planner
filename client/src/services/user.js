@@ -180,6 +180,12 @@ class User {
       headers: getAuthenticationHeader(),
     });
   }
+
+  getHeartRates(date, start, end) {
+    return axios.get(`${this.API_URL}/statistics/heartRates/${date}/${start}/${end}`, {
+      headers: getAuthenticationHeader(),
+    });
+  }
 }
 
 export default new User();

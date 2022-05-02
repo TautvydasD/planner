@@ -1,12 +1,12 @@
 <template>
   <v-container class="justify-center">
-    <v-container class="col-lg-8">
-      <v-divider style="margin-bottom: 12px;" />
-      <div class="d-flex">
-        <h1 class="subheading justify-center grey--text">
-          My exercises
-        </h1>
-        <v-spacer></v-spacer>
+    <slide-table
+      :instances="myExercises"
+      title="My exercises"
+      :loaded="exercisesLoaded"
+      has-add
+    >
+      <template #header>
         <exercises-modal
           v-show="exercisesLoaded && myExercises.length > 5"
           title="My exercises"
@@ -22,93 +22,72 @@
               </v-btn>
             </div>
           </template>
-            <card-table
-              :instances="myExercises"
-              :loaded="exercisesLoaded"
-            >
-              <template #default="{ item }">
-                <exercise-modal
-                  :exercise="item"
-                  is-edit
-                  @saved-exercise="editExercise"
-                  @removed-exercise="removeExercise"
-                />
-              </template>
-            </card-table>
-        </exercises-modal>
-      </div>
-      <v-divider style="margin-top: 12px;" />
-      <v-sheet class="mx-auto">
-        <v-slide-group
-          show-arrows
-          class="justify-center"
-        >
-          <v-slide-item key="create">
-            <exercise-modal
-              is-add
-              @saved-exercise="addExercise"
-            />
-          </v-slide-item>
-          <v-slide-item
-            v-for="(exercise, index) in myExercises"
-            :key="`${exercise.name}.${index}`"
+          <card-table
+            :instances="myExercises"
+            :loaded="exercisesLoaded"
           >
-            <exercise-modal
-              :exercise="exercise"
-              is-edit
-              @saved-exercise="editExercise"
-              @removed-exercise="removeExercise"
-            />
-          </v-slide-item>
-        </v-slide-group>
-      </v-sheet>
-      <v-divider style="margin-bottom: 12px;" />
-      <h1 class="subheading grey--text my-3">
-        Exercises
-      </h1>
-      <v-divider style="margin-bottom: 12px;" />
-      <v-layout wrap>
-        <card-table
-          :instances="exercises"
-          :loaded="exercisesLoaded"
-        >
-          <template #default="{ item }">
-            <exercise-modal :exercise="item" />
-          </template>
-        </card-table>
-      </v-layout>
-      <v-divider style="margin-top: 12px;" />
-      <h1 class="subheading grey--text my-3">
-        Wger exercises
-      </h1>
-      <v-divider style="margin-bottom: 12px;" />
-      <v-layout wrap>
-        <card-table
-          :instances="wGerexercises"
-          :loaded="exercisesLoaded"
-        >
-          <template #default="{ item }">
-            <wger-exercise :exercise="item" />
-          </template>
-        </card-table>
-      </v-layout>
-    </v-container>
+            <template #default="{ item }">
+              <exercise-modal
+                :exercise="item"
+                is-edit
+                @saved-exercise="editExercise"
+                @removed-exercise="removeExercise"
+              />
+            </template>
+          </card-table>
+        </exercises-modal>
+      </template>
+      <template #create>
+        <exercise-modal
+          is-add
+          @saved-exercise="addExercise"
+        />
+      </template>
+      <template #default="{ item }">
+        <exercise-modal
+          :exercise="item"
+          is-edit
+          @saved-exercise="editExercise"
+          @removed-exercise="removeExercise"
+        />
+      </template>
+    </slide-table>
+    <card-table
+      :instances="exercises"
+      :loaded="exercisesLoaded"
+      title="Exercises"
+    >
+      <template #default="{ item }">
+        <exercise-modal :exercise="item" />
+      </template>
+    </card-table>
+    <card-table
+      :instances="wGerexercises"
+      :loaded="exercisesLoaded"
+      title="Wger exercises"
+    >
+      <template #default="{ item }">
+        <wger-exercise :exercise="item" />
+      </template>
+    </card-table>
   </v-container>
 </template>
-
 <script>
 import WgerExercise from '../components/WgerExercise.vue';
 import ExerciseModal from '../components/ExerciseModal.vue';
-import user from '../services/user';
-import CardTable from '../components/CardTable.vue';
 import ExercisesModal from '../components/CardModal.vue';
+import CardTable from '../components/CardTable.vue';
+import SlideTable from '../components/SlideTable.vue';
+
+import user from '../services/user';
 
 export default {
   components: {
     WgerExercise,
     ExerciseModal,
-    CardTable,
     ExercisesModal,
+    CardTable,
+    SlideTable,
   },
   data: () => ({
     wGerexercises: [],
@@ -116,8 +95,6 @@ export default {
     exercisesLoaded: false,
     myExercises: [],
   }),
-  computed: {
-  },
   created() {
     this.loadExercises();
   },

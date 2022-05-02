@@ -1,0 +1,47 @@
+Date : 2022-05-02 07:20:32
+Directory : /home/tautvydas/MyProjects/Bakis
+Total : 12 files,  183 codes, 205 comments, 8 blanks, all 396 lines
+
+Languages
++------------+------------+------------+------------+------------+------------+
+| language   | files      | code       | comment    | blank      | total      |
++------------+------------+------------+------------+------------+------------+
+| Vue        |          7 |        439 |       -114 |          5 |        330 |
+| JavaScript |          5 |       -256 |        319 |          3 |         66 |
++------------+------------+------------+------------+------------+------------+
+
+Directories
++--------------------------------------------------------------------------------+------------+------------+------------+------------+------------+
+| path                                                                           | files      | code       | comment    | blank      | total      |
++--------------------------------------------------------------------------------+------------+------------+------------+------------+------------+
+| .                                                                              |         12 |        183 |        205 |          8 |        396 |
+| client                                                                         |          8 |        444 |       -114 |          6 |        336 |
+| client/src                                                                     |          8 |        444 |       -114 |          6 |        336 |
+| client/src/components                                                          |          4 |         43 |          5 |          5 |         53 |
+| client/src/components/Calendar                                                 |          2 |        -85 |          1 |          1 |        -83 |
+| client/src/services                                                            |          1 |          5 |          0 |          1 |          6 |
+| client/src/views                                                               |          3 |        396 |       -119 |          0 |        277 |
+| server                                                                         |          4 |       -261 |        319 |          2 |         60 |
+| server/src                                                                     |          4 |       -261 |        319 |          2 |         60 |
+| server/src/controllers                                                         |          2 |         37 |         20 |          1 |         58 |
+| server/src/routes                                                              |          1 |          1 |          0 |          1 |          2 |
++--------------------------------------------------------------------------------+------------+------------+------------+------------+------------+
+
+Files
++--------------------------------------------------------------------------------+------------+------------+------------+------------+------------+
+| filename                                                                       | language   | code       | comment    | blank      | total      |
++--------------------------------------------------------------------------------+------------+------------+------------+------------+------------+
+| /home/tautvydas/MyProjects/Bakis/client/src/components/Calendar/EventForm.vue  | Vue        |       -216 |          0 |         -1 |       -217 |
+| /home/tautvydas/MyProjects/Bakis/client/src/components/Calendar/EventModal.vue | Vue        |        131 |          1 |          2 |        134 |
+| /home/tautvydas/MyProjects/Bakis/client/src/components/LineChart.vue           | Vue        |         71 |          4 |          4 |         79 |
+| /home/tautvydas/MyProjects/Bakis/client/src/components/WorkoutModal.vue        | Vue        |         57 |          0 |          0 |         57 |
+| /home/tautvydas/MyProjects/Bakis/client/src/services/user.js                   | JavaScript |          5 |          0 |          1 |          6 |
+| /home/tautvydas/MyProjects/Bakis/client/src/views/Calendar.vue                 | Vue        |         -3 |        -86 |          0 |        -89 |
+| /home/tautvydas/MyProjects/Bakis/client/src/views/Statistics.vue               | Vue        |        400 |        -33 |          0 |        367 |
+| /home/tautvydas/MyProjects/Bakis/client/src/views/Supervisors.vue              | Vue        |         -1 |          0 |          0 |         -1 |
+| /home/tautvydas/MyProjects/Bakis/server/src/controllers/events.js              | JavaScript |          3 |          0 |          0 |          3 |
+| /home/tautvydas/MyProjects/Bakis/server/src/controllers/statistics.js          | JavaScript |         34 |         20 |          1 |         55 |
+| /home/tautvydas/MyProjects/Bakis/server/src/db.js                              | JavaScript |       -299 |        299 |          0 |          0 |
+| /home/tautvydas/MyProjects/Bakis/server/src/routes/statistics.js               | JavaScript |          1 |          0 |          1 |          2 |
+| Total                                                                          |            |        183 |        205 |          8 |        396 |
++--------------------------------------------------------------------------------+------------+------------+------------+------------+------------+

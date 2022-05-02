@@ -1,97 +1,51 @@
 <template>
   <v-container>
-    <v-divider style="margin-top: 12px;" />
-    <h1 class="subheading grey--text my-3">
-      Coaches
-    </h1>
-    <v-divider style="margin-bottom: 12px;" />
-    <v-layout
-      row
-      wrap
+    <slide-table
+      :instances="coaches"
+      title="Coaches"
+      :loaded="loaded"
     >
-      <v-flex
-        v-for="(coach, index) in coaches"
-        :key="index"
-        xs12
-        sm6
-        md4
-        lg3
-      >
-        <v-card class="text-xs-center ma-4">
-          {{ coach }}
-          <v-card-title class="justify-center">
-            <v-avatar>
-              <v-img :src="`https://avatars.dicebear.com/api/bottts/${coach.email}.svg`" alt="" />
-            </v-avatar>
-          </v-card-title>
-          <v-card-title class="justify-center">
-            <div class="subheading">
-              {{ coach.username }}
-            </div>
-          </v-card-title>
-          <v-card-text>
-            <div>
-              {{ coach.description || 'Some coaches need to write abou themselves more' }}
-            </div>
-          </v-card-text>
-          <v-card-actions>
-            <v-spacer></v-spacer>
-            <v-btn
-              v-if="userData.username !== coach.username"
-              text
-              color="grey"
-            >
-              <v-icon small>
-                mdi-message
-              </v-icon>
-              <span>Message</span>
-            </v-btn>
-          </v-card-actions>
-        </v-card>
-      </v-flex>
-    </v-layout>
-    <v-divider style="margin-top: 12px;" />
-    <h1 class="subheading grey--text my-3">
-      Chats
-    </h1>
-    {{ users }}
-    <v-divider style="margin-bottom: 12px;" />
-    <v-layout wrap>
-      <card-table
-        :instances="rooms"
-        :loaded="loaded"
-      >
-        <template #default="{ item }">
-          <v-card class="text-xs-center ma-4">
-            {{ item }}
-            <v-card-title class="justify-center">
-              <v-badge
-                bordered
-                bottom
-                :color="item.connected ? 'green' : 'grey'"
-                dot
-                offset-x="10"
-                offset-y="10"
+      <template #header>
+        <card-modal
+          v-if="loaded && coaches.length > 5"
+        >
+          <template #content="{ on, attrs }">
+            <div class="d-flex align-center">
+              <v-btn
+                v-bind="attrs"
+                v-on="on"
+                text
               >
-                <v-avatar>
-                  <v-img :src="`https://avatars.dicebear.com/api/bottts/${item.toUser.email}.svg`" alt="" />
-                </v-avatar>
-              </v-badge>
+                Show all
+              </v-btn>
+            </div>
+          </template>
+        </card-modal>
+      </template>
+      <template #default="{ item }">
+        <v-flex xs2>
+          <v-card class="text-xs-center ma-4">
+            <v-card-title class="justify-center">
+              <v-avatar>
+                <v-img :src="`https://avatars.dicebear.com/api/bottts/${item.email}.svg`" alt="" />
+              </v-avatar>
             </v-card-title>
             <v-card-title class="justify-center">
               <div class="subheading">
-                {{ item.toUser.username }}
+                {{ item.username }}
               </div>
             </v-card-title>
             <v-card-text>
-              {{ getLatestText(item) }}
+              <div>
+                {{ item.description || 'Some coaches need to write abou themselves more' }}
+              </div>
             </v-card-text>
             <v-card-actions>
               <v-spacer></v-spacer>
               <v-btn
+                v-if="userData.username !== item.username"
                 text
                 color="grey"
-                @click="openExistantChat(item)"
               >
                 <v-icon small>
                   mdi-message
@@ -100,48 +54,89 @@
               </v-btn>
             </v-card-actions>
           </v-card>
-        </template>
-      </card-table>
-      <chat
-        ref="chat"
-        :chat-info="currentChat"
-        :show-chat="showChatModal"
-        @send-message="sendMessage"
-        @close-chat="closeChat"
-      />
-    </v-layout>
+        </v-flex>
+      </template>
+    </slide-table>
+    <card-table
+      :instances="rooms"
+      :loaded="loaded"
+      title="Chats"
+    >
+      <template #default="{ item }">
+        <v-card class="text-xs-center ma-4">
+          <v-card-title class="justify-center">
+            <v-badge
+              bordered
+              bottom
+              :color="item.connected ? 'green' : 'grey'"
+              dot
+              offset-x="10"
+              offset-y="10"
+            >
+              <v-avatar>
+                <v-img :src="`https://avatars.dicebear.com/api/bottts/${item.toUser.email}.svg`" alt="" />
+              </v-avatar>
+            </v-badge>
+          </v-card-title>
+          <v-card-title class="justify-center">
+            <div class="subheading">
+              {{ item.toUser.username }}
+            </div>
+          </v-card-title>
+          <v-card-text>
+            {{ getLatestText(item) }}
+          </v-card-text>
+          <v-card-actions>
+            <v-spacer></v-spacer>
+            <v-btn
+              text
+              color="grey"
+              @click="openExistantChat(item)"
+            >
+              <v-icon small>
+                mdi-message
+              </v-icon>
+              <span>Message</span>
+            </v-btn>
+          </v-card-actions>
+        </v-card>
+      </template>
+    </card-table>
+    <chat
+      ref="chat"
+      :chat-info="currentChat"
+      :show-chat="showChatModal"
+      @send-message="sendMessage"
+      @close-chat="closeChat"
+    />
   </v-container>
 </template>
 
 <script>
 import CardTable from '../components/CardTable.vue';
+import SlideTable from '../components/SlideTable.vue';
+import Chat from '../components/Chat.vue';
+
 import socket from '../services/socket';
 import user from '../services/user';
-import Chat from '../components/Chat.vue';
 
 export default {
   components: {
     CardTable,
     Chat,
+    SlideTable,
   },
   data() {
     return {
-      user: '',
-      message: '',
       showContent: true,
-      showChat: false,
       showChatModal: false,
-      messages: [],
       coaches: [],
-      chats: {},
-      responderChats: {},
       currentChat: {
         toUser: {},
         currUser: {},
         messages: [],
         showChat: false,
       },
-      textMessage: '',
       userData: {},
       users: [],
       rooms: [],
